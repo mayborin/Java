@@ -70,3 +70,40 @@ SET     @variable_name datatype [ = initial_value ],
         ...;
 ```
 
+
+
+
+# NoSQL
+
+Types:
+1. Key-value stores
+
+common use cases: storing user's session data and shopping cart data, cache for applications or databases
+
+examples: Redis, Riak, Amazon DynamoDB
+
+2. Document stores
+
+Databases store data in collections of key-value pairs called documents. Most document stores store data in JSON
+
+Example: MongoDB, CouchDB, Couchbase
+
+3. Column Family Store
+
+Example: BigTable, Cassandra, HBase
+
+4. Graph databases:
+
+Example: Neo4J InfoGrid
+
+
+### RDBMS vs NOSQL
+
+strength of RDBMS:
+1. Maturity
+2. Data safety: ACID
+  Atomicity: each transaction is all or nothing
+  Consistency: any data the transaction modifies or adds follow the rules of each table
+  Isolation: if the database runs transactions concurrently to speed up writes, that the outcome of the transactions would be the same if they wre run serially
+  Durability: once a transaction is accepted, the data must never be lost
+3. Speed and Scale: It is completely possible for an RDBMS to scale but requires complexity
