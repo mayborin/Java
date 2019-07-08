@@ -36,3 +36,19 @@ Structured API Execution:
 2. If valid code, Spark converts this into a Logical Plan
 3. Spark transforms Logical Plan to a Physical Plan, checking for optimizations along the way
 4. Spark then executes the Physical Plan (RDD manipulations) on the cluster
+
+
+word count example:
+
+```python
+import re
+from pyspark.sql.functions import desc, udf, explode
+from pyspark.sql.types import StringType, ArrayType
+
+def parse(line):
+	return map(lambda x: re.sub('[^a-zA-Z-]', '', x), line.split())
+
+parse_udf = udf(parse, ArrayType(StringType()))
+tdf  = spark.read.txt('example.txt')
+tdf.select(explode(parse_udf(tdf.value)).alias('word')).groupby('word').count().orderBy(desc('count')).show()
+```
